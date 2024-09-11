@@ -1,6 +1,7 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.11.3"}
-        colorize/colorize {:mvn/version "0.1.1"}}
+        clj-figlet/clj-figlet {:mvn/version "0.1.1"}
+        com.draines/postal {:mvn/version "2.0.5"}}
  :aliases
  {:run-m {:main-opts ["-m" "antoine247.randomf"]}
   :run-x {:ns-default antoine247.randomf

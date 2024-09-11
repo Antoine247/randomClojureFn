@@ -1,7 +1,10 @@
 (ns antoine247.randomf
-(:require [colorize.core :as color])
+(:require [clj-figlet.core :as ascii]
+          [clojure.string :as string]
+          [clojure.java.io :as io])
   (:gen-class))
 
+(def flf (ascii/load-flf (io/resource "doh.flf")))
 (defn get-random-f
   "gets a map of a random function of the clojure.core namespace with the keys name, arglists and doc"
   []
@@ -16,15 +19,21 @@
 
 (defn print-f
   "prints in the standard output the random function"
-  [{:keys [name arglists doc]}]
+  [{:keys [namef arglists doc] :as map}]
   (println "Funcion del dia!")
-  (color/color :red (println name)) 
+  (println
+   (clojure.string/join
+    \newline
+    (ascii/render flf (str (:name map))))) 
   (println "Argumentos")
   (println arglists)
   (println "Documentacion")
   (println doc))
 
+
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (print-f (get-random-f)))
+
